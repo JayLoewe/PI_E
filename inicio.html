@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki Wireframes UVM - Diseño Digital</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #555;
+            background-color: #FFFFFF;
+        }
+
+        /* HEADER FIJO */
+        .header {
+            background: #FFFFFF;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #E30613, #FF4757);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            width: 24px;
+            height: 24px;
+            border: 3px solid white;
+            border-radius: 4px;
+            position: absolute;
+        }
+
+        .logo-icon::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            border: 2px solid white;
+            border-radius: 2px;
+            position: absolute;
+            top: 12px;
+            left: 12px;
+        }
+
+        .logo-text {
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+            font-size: 24px;
+            color: #E30613;
+        }
+
+        .search-container {
+            flex: 1;
+            max-width: 400px;
+            margin: 0 40px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 50px 12px 20px;
+            border: 2px solid #F5F5F5;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4A90E2;
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #4A90E2;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* NAVEGACIÓN */
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-link {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #E30613;
+            background: rgba(227, 6, 19, 0.1);
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        .main-content {
+            margin-top: 80px;
+            padding: 60px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            background: linear-gradient(135deg, #F5F5F5 0%, #FFFFFF 100%);
+            padding: 80px 60px;
+            border-radius: 20px;
+            margin-bottom: 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, rgba(227, 6, 19, 0.05), rgba(74, 144, 226, 0.05));
+            border-radius: 50%;
+        }
+
+        .hero-title {
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+            font-size: 48px;
+            color: #E30613;
+            margin-bottom: 60px;
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+
+        .hero-intro {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            font-size: 18px;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* BOTONES */
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background-color: #E30613;
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background-color: #B8050F;
+            box-shadow: 0 4px 12px rgba(227, 6, 19, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #4A90E2;
+            color: #FFFFFF;
+        }
+
+        .btn-secondary:hover {
+            background-color: #3A7BC8;
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* SECCIONES DE CONTENIDO */
+        .content-section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 36px;
+            color: #000000;
+            margin: 0 0 32px 0;
+            line-height: 1.3;
+        }
+
+        .section-subtitle {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 600;
+            font-size: 24px;
+            color: #E30613;
+            margin: 32px 0 24px 0;
+            line-height: 1.4;
+        }
+
+        .content-text {
+            font-family: 'Open Sans', sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+            color: #555;
+            line-height: 1.5;
+            max-width: 65ch;
+            margin-bottom: 24px;
+        }
+
+        /* ICONOS Y GRÁFICOS - ESTILO LINEAL MODERNO */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin: 60px 0;
+        }
+
+        .feature-card {
+            background: #FFFFFF;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            border-color: #E30613;
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        /* ICONOS LINEALES ESPECÍFICOS */
+        .icon-wireframe {
+            background: linear-gradient(135deg, #4A90E2, #74B9FF);
+            border-radius: 16px;
+        }
+
+        .icon-wireframe::before {
+            content: '';
+            width: 40px;
+            height: 32px;
+            border: 3px solid white;
+            border-radius: 4px;
+            position: absolute;
+        }
+
+        .icon-wireframe::after {
+            content: '';
+            width: 24px;
+            height: 2px;
+            background: white;
+            position: absolute;
+            box-shadow: 0 6px 0 white, 0 12px 0 white;
+        }
+
+        .icon-design {
+            background: linear-gradient(135deg, #E30613, #FF6B7A);
+            border-radius: 16px;
+        }
+
+        .icon-design::before {
+            content: '';
+            width: 32px;
+            height: 32px;
+            border: 3px solid white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .icon-design::after {
+            content: '';
+            width: 16px;
+            height: 16px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .icon-prototype {
+            background: linear-gradient(135deg, #FFC107, #FFD93D);
+            border-radius: 16px;
+        }
+
+        .icon-prototype::before {
+            content: '';
+            width: 36px;
+            height: 28px;
+            border: 3px solid #333;
+            border-radius: 6px;
+            position: absolute;
+        }
+
+        .icon-prototype::after {
+            content: '';
+            width: 20px;
+            height: 2px;
+            background: #333;
+            position: absolute;
+            box-shadow: 0 4px 0 #333, 0 8px 0 #333;
+        }
+
+        .feature-title {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            color: #333;
+            margin-bottom: 16px;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* SECCIÓN DE PROCESO */
+        .process-section {
+            background: #F5F5F5;
+            padding: 80px 60px;
+            border-radius: 20px;
+            margin: 80px 0;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .process-step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #E30613;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            margin: 0 auto 20px auto;
+        }
+
+        .step-title {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .step-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        /* WIREFRAME VISUAL EJEMPLO */
+        .wireframe-example {
+            background: white;
+            border: 3px solid #E30613;
+            border-radius: 12px;
+            padding: 40px;
+            margin: 60px 0;
+            position: relative;
+        }
+
+        .wireframe-example::before {
+            content: 'WIREFRAME EJEMPLO';
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: #E30613;
+            color: white;
+            padding: 4px 12px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 4px;
+        }
+
+        .wireframe-layout {
+            display: grid;
+            grid-template-areas: 
+                "header header header"
+                "nav nav nav"
+                "sidebar content content"
+                "footer footer footer";
+            grid-template-rows: 60px 40px 200px 40px;
+            gap: 16px;
+            height: 340px;
+        }
+
+        .wireframe-box {
+            background: #F5F5F5;
+            border: 2px dashed #4A90E2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            color: #4A90E2;
+            border-radius: 4px;
+        }
+
+        .wf-header { grid-area: header; background: #E30613; color: white; border-color: #E30613; }
+        .wf-nav { grid-area: nav; }
+        .wf-sidebar { grid-area: sidebar; }
+        .wf-content { grid-area: content; }
+        .wf-footer { grid-area: footer; background: #333; color: white; border-color: #333; }
+
+        /* SECCIÓN DE INTERACCIÓN */
+        .interaction-section {
+            background: linear-gradient(135deg, #4A90E2 0%, #74B9FF 100%);
+            color: white;
+            padding: 80px 60px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 80px 0;
+        }
+
+        .interaction-title {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            margin-bottom: 24px;
+        }
+
+        .interaction-text {
+            font-size: 18px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: #4A90E2;
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 60px 20px 40px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #FFC107;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FFC107;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                height: auto;
+                padding: 20px 0;
+                gap: 20px;
+            }
+
+            .search-container {
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .main-content {
+                margin-top: 140px;
+                padding: 40px 20px;
+            }
+
+            .hero-section {
+                padding: 60px 30px;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .features-grid, .process-steps {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .process-section, .interaction-section {
+                padding: 60px 30px;
+            }
+
+            .wireframe-layout {
+                grid-template-areas: 
+                    "header"
+                    "nav"
+                    "sidebar"
+                    "content"
+                    "footer";
+                grid-template-rows: repeat(5, 80px);
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER FIJO -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">WIKI UVM</div>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar conceptos, herramientas, ejemplos...">
+                <button class="search-btn">🔍</button>
+            </div>
+            
+            <nav class="nav">
+                <a href="inicio.html" class="nav-link active">Inicio</a>
+                <a href="conceptos_page.html" class="nav-link">Conceptos</a>
+                <a href="herramientas_page.html" class="nav-link">Herramientas</a>
+                <a href="ejemplos_page.html" class="nav-link">Ejemplos</a>
+                <a href="recursos.html" class="nav-link">Recursos</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="main-content">
+        <div class="container">
+            <!-- HERO SECTION -->
+            <section class="hero-section">
+                <h1 class="hero-title">WIREFRAMES PARA DISEÑO WEB</h1>
+                <p class="hero-intro">
+                    Descubre cómo los wireframes revolucionan el proceso de diseño digital, 
+                    proporcionando una base sólida para crear interfaces centradas en el usuario 
+                    y optimizadas para una experiencia excepcional.
+                </p>
+                <div class="hero-buttons">
+                    <a href="ejemplos_page.html" class="btn btn-secondary">📋 Ver Ejemplos</a>
+                </div>
+            </section>
+
+            <!-- SECCIÓN PRINCIPAL -->
+            <section class="content-section">
+                <h1 class="section-title">¿Qué es un Wireframe?</h1>
+                <p class="content-text">
+                    Un wireframe es una representación visual básica y esquemática de la estructura 
+                    de una página web o aplicación móvil. Actúa como el esqueleto o plano arquitectónico 
+                    de tu proyecto digital, definiendo dónde van los elementos principales sin enfocarse 
+                    en aspectos visuales como colores, tipografías o imágenes.
+                </p>
+                <p class="content-text">
+                    Los wireframes son fundamentales en el proceso de diseño UX/UI porque permiten 
+                    visualizar y planificar la estructura antes de invertir tiempo y recursos en 
+                    el diseño visual o la programación. Son la base sobre la cual se construye 
+                    toda la experiencia del usuario.
+                </p>
+
+                <h2 class="section-subtitle">¿Por qué son Esenciales los Wireframes?</h2>
+                <p class="content-text">
+                    Todo buen diseño parte de una estructura clara y bien planificada. Los wireframes 
+                    te permiten resolver problemas de usabilidad, arquitectura de información y flujos 
+                    de navegación en las etapas tempranas del proyecto, cuando los cambios son más 
+                    fáciles y económicos de implementar.
+                </p>
+            </section>
+
+            <!-- CARACTERÍSTICAS PRINCIPALES -->
+            <section class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon icon-wireframe"></div>
+                    <h3 class="feature-title">Estructura Clara</h3>
+                    <p class="feature-description">
+                        Define la jerarquía de contenidos y la organización de elementos 
+                        en cada página de manera visual y comprensible.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-design"></div>
+                    <h3 class="feature-title">Enfoque en UX</h3>
+                    <p class="feature-description">
+                        Prioriza la funcionalidad y usabilidad antes que los aspectos 
+                        estéticos, asegurando una experiencia centrada en el usuario.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon icon-prototype"></div>
+                    <h3 class="feature-title">Prototipado Rápido</h3>
+                    <p class="feature-description">
+                        Permite crear y iterar rápidamente diferentes versiones 
+                        del diseño sin invertir en desarrollo completo.
+                    </p>
+                </div>
+            </section>
+        
+            <!-- PROCESO DE WIREFRAMING -->
+            <section class="process-section">
+                <h1 class="section-title" style="text-align: center; color: #333;">Proceso de Wireframing</h1>
+                <p class="content-text" style="text-align: center; max-width: 800px; margin: 0 auto;">
+                    Seguir un proceso estructurado asegura que tus wireframes cumplan su objetivo 
+                    de planificación y comunicación efectiva.
+                </p>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <h3 class="step-title">Investigación</h3>
+                        <p class="step-description">
+                            Analiza usuarios, competencia y objetivos del proyecto 
+                            para entender qué necesitas comunicar.
+                        </p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <h3 class="step-title">Arquitectura</h3>
+                        <p class="step-description">
+                            Define la estructura de contenidos y crea un mapa 
+                            de navegación claro y lógico.
+                        </p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <h3 class="step-title">Bocetos</h3>
+                        <p class="step-description">
+                            Crea sketches rápidos en papel para explorar 
+                            diferentes ideas y layouts posibles.
+                        </p>
+                    </div>
+                    
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <h3 class="step-title">Wireframe Digital</h3>
+                        <p class="step-description">
+                            Usa herramientas como Figma o Adobe XD para crear 
+                            wireframes detallados y profesionales.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HERRAMIENTAS RECOMENDADAS -->
+            <section class="content-section">
+                <h1 class="section-title">Herramientas Profesionales</h1>
+                <p class="content-text">
+                    Para crear wireframes profesionales, recomendamos estas herramientas 
+                    ampliamente utilizadas en la industria del diseño UX/UI:
+                </p>
+                
+                <h2 class="section-subtitle">Herramientas Digitales</h2>
+                <p class="content-text">
+                    <strong>Figma:</strong> Herramienta colaborativa en línea, ideal para equipos. 
+                    Permite wireframing, prototipado y diseño visual en una sola plataforma.
+                </p>
+                <p class="content-text">
+                    <strong>Adobe XD:</strong> Solución completa de Adobe para UX/UI, con funciones 
+                    avanzadas de prototipado interactivo y sistemas de diseño.
+                </p>
+                <p class="content-text">
+                    <strong>Sketch:</strong> Estándar de la industria en Mac, especialmente popular 
+                    para diseño de interfaces y wireframing detallado.
+                </p>
+            </section>
+
+            <!-- SECCIÓN DE INTERACCIÓN -->
+            <section class="interaction-section">
+                <h2 class="interaction-title">¿Listo para Crear tu Primer Wireframe?</h2>
+            
+                </p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                    <a href="registrate.html" class="btn btn-primary">🚀 Crear Cuenta</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Aprende</h4>
+                <ul>
+                    <li><a href="conceptos_page.html">Conceptos Básicos</a></li>
+                    <li><a href="recursos.html">Recursos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Herramientas</h4>
+                <ul>
+                   <li><a href="https://www.figma.com/">Figma</a></li>
+                    <li><a href="https://helpx.adobe.com/mx/xd/help/adobe-xd-overview.html">Adobe XD</a></li>
+                    <li><a href="https://www.sketch.com/">Sketch</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2024 Wiki Wireframes UVM - Programación en Ambiente Web | 
+            Desarrollado por: Jaqueline Lowe, Ana Karen Chavez, Andrea Salazar, Aide Andrade, Américo Guzmán

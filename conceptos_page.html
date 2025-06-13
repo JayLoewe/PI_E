@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos - Wiki UVM</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #555;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            background: linear-gradient(135deg, #E30613, #FF4757);
+            color: white;
+            padding: 40px 60px;
+            text-align: center;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-family: 'Lato', sans-serif;
+            font-weight: 900;
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .page-subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+
+        .breadcrumb {
+            background: white;
+            padding: 12px 20px;
+            font-size: 14px;
+            color: #666;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .breadcrumb a {
+            color: #4A90E2;
+            text-decoration: none;
+        }
+
+        .page-content {
+            background: white;
+            padding: 60px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .content-card {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 12px;
+            border-left: 4px solid #E30613;
+            transition: all 0.3s ease;
+        }
+
+        .content-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: #E30613;
+            margin-bottom: 12px;
+        }
+
+        .card-description {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .tag {
+            display: inline-block;
+            background: #4A90E2;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+            margin: 4px;
+        }
+
+        .difficulty-beginner { background: #28a745; }
+        .difficulty-intermediate { background: #ffc107; color: #333; }
+        .difficulty-advanced { background: #dc3545; }
+
+        @media (max-width: 768px) {
+            .page-content {
+                padding: 30px 20px;
+            }
+            
+            .page-header {
+                padding: 30px 20px;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+ .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #4A90E2;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+
+        .resource-link:hover {
+            color: #E30613;
+        }
+
+        @media (max-width: 768px) {
+            .page-content {
+                padding: 30px 20px;
+            }
+            
+            .page-header {
+                padding: 30px 20px;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+
+         /* FOOTER */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 60px 20px 40px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-section h4 {
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #FFC107;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #FFC107;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #555;
+            font-size: 14px;
+            color: #999;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                height: auto;
+                padding: 20px 0;
+                gap: 20px;
+            }
+
+            .search-container {
+                margin: 0;
+                max-width: 100%;
+            }
+
+            .nav {
+                flex-wrap: wrap;
+                gap: 15px;
+                justify-content: center;
+            }
+
+            .main-content {
+                margin-top: 140px;
+                padding: 40px 20px;
+            }
+
+            .hero-section {
+                padding: 60px 30px;
+            }
+
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .features-grid, .process-steps {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .process-section, .interaction-section {
+                padding: 60px 30px;
+            }
+
+            .wireframe-layout {
+                grid-template-areas: 
+                    "header"
+                    "nav"
+                    "sidebar"
+                    "content"
+                    "footer";
+                grid-template-rows: repeat(5, 80px);
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1 class="page-title">📚 CONCEPTOS</h1>
+            <p class="page-subtitle">Fundamentos esenciales del diseño de wireframes y UX/UI</p>
+        </div>
+        
+        <div class="breadcrumb">
+            <a href="inicio.html">Inicio</a> / Conceptos
+        </div>
+        
+        <div class="page-content">
+            <h2 class="section-title">Conceptos Fundamentales</h2>
+            
+            <div class="content-grid">
+                <div class="content-card">
+                    <h3 class="card-title">Wireframes de Baja Fidelidad</h3>
+                    <p class="card-description">
+                        Representaciones básicas que se enfocan en la estructura y layout general, 
+                        sin detalles visuales. Ideales para las primeras etapas de diseño.
+                    </p>
+                    <span class="tag difficulty-beginner">Principiante</span>
+                    <span class="tag">Estructura</span>
+                    <a href="https://www.youtube.com/watch?v=Tsecq8yZtAQ" class="resource-link">🔗Quiero leer mas</a>
+                </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title">Wireframes de Alta Fidelidad</h3>
+                    <p class="card-description">
+                        Diseños detallados que incluyen elementos específicos, contenido real 
+                        y una representación más precisa del producto final.
+                    </p>
+                    <span class="tag difficulty-intermediate">Intermedio</span>
+                    <span class="tag">Detalle</span>
+                     <a href="https://www.youtube.com/watch?v=BVVgpiGlrFQ" class="resource-link">🔗Ver prototipos de alta y baja calidad</a>
+                </div>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title">Arquitectura de Información</h3>
+                    <p class="card-description">
+                        La organización, estructuración y etiquetado del contenido de manera 
+                        efectiva y sostenible para ayudar a los usuarios a encontrar información.
+                    </p>
+                    <span class="tag difficulty-intermediate">Intermedio</span>
+                    <span class="tag">Organización</span>
+                    <a href="https://digital.gov/topics/usability/" class="resource-link">🔗Como empezar</a>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title">User Flow</h3>
+                    <p class="card-description">
+                        El camino que sigue un usuario para completar una tarea en tu sitio web 
+                        o aplicación. Esencial para wireframes funcionales.
+                    </p>
+                    <span class="tag difficulty-beginner">Principiante</span>
+                    <span class="tag">Navegación</span>
+                    <a href="https://www.justinmind.com/es/blog/flujo-usuario/" class="resource-link">🔗Guía definitiva</a>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title">Grid Systems</h3>
+                    <p class="card-description">
+                        Sistemas de rejillas que proporcionan estructura y consistencia 
+                        al layout, facilitando la organización del contenido.
+                    </p>
+                    <span class="tag difficulty-advanced">Avanzado</span>
+                    <span class="tag">Layout</span>
+                    <a href="https://bootcamp.laboratoria.la/es/topics/css/responsive/grid-system" class="resource-link">🔗Conoce más</a>
+                </div>
+
+                <div class="content-card">
+                    <h3 class="card-title">Responsive Design</h3>
+                    <p class="card-description">
+                        Enfoque de diseño que hace que las páginas web se vean bien 
+                        en todos los dispositivos y tamaños de pantalla.
+                    </p>
+                    <span class="tag difficulty-intermediate">Intermedio</span>
+                    <span class="tag">Adaptabilidad</span>
+                    <a href="https://www.40defiebre.com/que-es/diseno-responsive" class="resource-link">Explora más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Aprende</h4>
+                <ul>
+                    <li><a href="inicio">Conceptos Básicos</a></li>
+                    <li><a href="recursos.html">Recursos</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Herramientas</h4>
+                <ul>
+                    <li><a href="https://www.figma.com/">Figma</a></li>
+                    <li><a href="https://helpx.adobe.com/mx/xd/help/adobe-xd-overview.html">Adobe XD</a></li>
+                    <li><a href="https://www.sketch.com/">Sketch</a></li>
+                </ul>
+            </div>
+        </div>
+         </main>
+        
+        <div class="footer-bottom">
+            <p>© 2024 Wiki Wireframes UVM - Programación en Ambiente Web | 
+            Desarrollado por: Jaqueline Lowe, Ana Karen Chavez, Andrea Salazar, Aide Andrade, Américo Guzmán
+            </footer>
